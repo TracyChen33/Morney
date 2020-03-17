@@ -1,14 +1,6 @@
 <template>
 <div>
   <router-view/>
-  <hr/>
-<div>
-  <router-link to="/money">Money</router-link>
-  |
-  <router-link to="/labels">Label</router-link>
-  |
-  <router-link to="/statistics">Statistics</router-link>
-</div>
 </div>
 </template>
 
@@ -34,3 +26,9 @@
   }
 }
 </style>
+<script>
+
+  export default {
+    components: {}
+  }
+</script>
