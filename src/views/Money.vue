@@ -12,5 +12,5 @@
 </script>
 
 <style lang="scss" scoped>
-
+  @import "~@/assets/style/helper.scss";
 </style>
