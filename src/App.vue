@@ -9,11 +9,13 @@
   @import "~@/assets/style/reset.scss";
 
   body {
-    line-height: 1.5;
-    font-family: $font-black;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+    font-family: $font-black;
+    font-size: 16px;
     color: #333;
+
   }
 </style>
 <script>

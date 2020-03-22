@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div class="tags">
-      <ul class="'current">
+      <ul class="current">
         <li>Cloth</li>
         <li>Food</li>
         <li>Home</li>
@@ -54,4 +54,31 @@
 
 <style lang="scss" scoped>
   @import "~@/assets/style/helper.scss";
+  .tags {
+    font-size: 14px;
+    padding: 16px;
+
+    > .current {
+      display: flex;
+      > li{
+        background: #d9d9d9;
+        $h: 24px;
+        height: $h;
+        line-height: $h;
+        border-radius: $h/2;
+        padding: 0 16px;
+        margin-right: 12px;
+      }
+    }
+    > .new{
+      padding: 16px 0;
+      button {
+        background: transparent;
+        border:none;
+        border-bottom: 1px solid;
+        color:#999;
+        padding: 0 4px;
+      }
+    }
+  }
 </style>
