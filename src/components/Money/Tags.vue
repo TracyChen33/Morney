@@ -1,0 +1,58 @@
+<template>
+  <div class="tags">
+    <div class="new">
+      <button>New Label</button>
+    </div>
+    <ul class="current">
+      <li>Cloth</li>
+      <li>Food</li>
+      <li>Home</li>
+      <li>Life</li>
+    </ul>
+  </div>
+</template>
+
+<script lang="ts">
+  export default {
+    name: 'Tags'
+  };
+</script>
+
+<style lang="scss" scoped>
+  .tags {
+    flex-grow: 1;
+    font-size: 14px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column-reverse;
+
+    > .current {
+      display: flex;
+      flex-wrap: wrap;
+
+      > li {
+        background: #d9d9d9;
+        $h: 24px;
+        height: $h;
+        line-height: $h;
+        border-radius: $h/2;
+        padding: 0 16px;
+        margin-right: 12px;
+        margin-top: 4px;
+      }
+    }
+
+    > .new {
+      padding: 16px 0;
+      > button {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid;
+        color: #999;
+        padding: 0 4px;
+      }
+
+    }
+  }
+
+</style>
