@@ -1,14 +1,31 @@
 <template>
-    <ul class="types">
-      <li class="selected">Income</li>
-      <li>Spend</li>
-    </ul>
+  <ul class="types">
+    <li :class="type === '-' && 'selected'" @click="selectType('-')">Spend</li>
+    <li :class="type === '+' && 'selected'" @click="selectType('+')">Income</li>
+  </ul>
 </template>
 
-<script lang="ts">
+<script>
   export default {
-    name: 'types'
-  };
+    name: 'types',
+    props:['xxx'],
+    data() {
+      return {
+        type: '-' // '-' for spend, '+' for Income
+      }
+    },
+    mounted(){
+      console.log(this.xxx)
+    },
+    methods: {
+      selectType(type) {
+        if (type !== '-' && type !== '+') {
+          throw new Error('type is unknown')
+        }
+        this.type = type
+      }
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
