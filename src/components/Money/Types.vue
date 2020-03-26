@@ -6,17 +6,27 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
-  import {Component} from 'vue-property-decorator';
-@Component
+  import Vue from 'vue';
+  import {Component, Prop} from 'vue-property-decorator';
+
+  @Component
   export default class Types extends Vue {
     type = '-';
+    @Prop(Number) xxx: number | undefined;
 
     selectType(type: string) {
       if (type !== '-' && type !== '+') {
-        throw new Error('type is unknown')
+        throw new Error('type is unknown');
       }
       this.type = type;
+    }
+
+    mounted() {
+      if (this.xxx === undefined) {
+        console.log('undefined');
+      } else {
+        console.log(this.xxx.toString());
+      }
     }
   }
 </script>
