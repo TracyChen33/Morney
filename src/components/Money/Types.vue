@@ -20,14 +20,6 @@
       }
       this.type = type;
     }
-
-    mounted() {
-      if (this.xxx === undefined) {
-        console.log('undefined');
-      } else {
-        console.log(this.xxx.toString());
-      }
-    }
   }
 </script>
 
