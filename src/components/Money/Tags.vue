@@ -27,6 +27,7 @@
       } else {
         this.selectedTags.push(tag);
       }
+      this.$emit('update:value',this.selectedTags)
     }
     create() {
       const name = window.prompt('please enter your Tags name');
