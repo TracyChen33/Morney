@@ -40,9 +40,6 @@
     onUpdateNotes(value: string) {
       this.record.notes = value;
     }
-    onUpdateAmount(value: string) {
-      this.record.amount = parseFloat(value);
-    }
   }
 </script>
 <style lang="scss">
