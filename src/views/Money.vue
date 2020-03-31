@@ -19,14 +19,6 @@
 
   const version = window.localStorage.getItem('version') ||'0';
   const recordList: Record[] = JSON.parse(window.localStorage.getItem('recordList') || '[]');
-  if(version === '0.0.1'){
-    //数据库升级,数据迁移
-    recordList.forEach(record =>{
-      record.createdAt = new Date(2020,0,1);
-    });
-    window.localStorage.setItem('recordList', JSON.stringify(recordList));  //保存数据
-  }
-  window.localStorage.setItem('version','0.0.1');
 
   type Record = {
     tags: string[];
@@ -41,7 +33,7 @@
   })
   export default class Money extends Vue {
     tags = ['Cloth', 'Food', 'Home', 'Life'];
-   // recordList: Record[] = JSON.parse(window.localStorage.getItem('recordList') || '[]');
+   recordList: Record[] = JSON.parse(window.localStorage.getItem('recordList') || '[]');
     record: Record = {
       tags: [], notes: '', type: '-', amount: 0 //Record的初始值
     };
