@@ -1,6 +1,25 @@
 <template>
   <Layout>
-    <p>Labels.vue</p>
+    <ol class="tags">
+      <li>
+        <span>Cloth</span>
+        <Icon name="right"/>
+      </li>
+      <li>
+        <span>Food</span>
+        <Icon name="right"/>
+      </li>
+      <li>
+        <span>Home</span>
+        <Icon name="right"/>
+      </li>
+      <li><span>Life</span>
+        <Icon name="right"/>
+      </li>
+    </ol>
+    <div class="createTag-wrapper">
+      <button class="createTag">New Label</button>
+    </div>
   </Layout>
 </template>
 
@@ -11,5 +30,39 @@
 </script>
 
 <style lang="scss" scoped>
+  .tags {
+    background: white;
+    font-size: 16px;
+    padding-left: 16px;
+
+    > li {
+      display: flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e6e6e6;
+
+      svg {
+        width: 18px;
+        height: 18px;
+        margin-right: 16px;
+        color: #666;
+      }
+    }
+  }
+  .createTag{
+background: #767676;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    height: 40px;
+    padding: 0 16px;
+&-wrapper{
+  text-align: center;
+  padding:16px;
+  margin-top: 44-16px;
+
+}
+  }
 
 </style>
