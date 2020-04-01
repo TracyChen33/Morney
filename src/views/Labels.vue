@@ -1,32 +1,40 @@
 <template>
   <Layout>
     <ol class="tags">
-      <li>
-        <span>Cloth</span>
-        <Icon name="right"/>
-      </li>
-      <li>
-        <span>Food</span>
-        <Icon name="right"/>
-      </li>
-      <li>
-        <span>Home</span>
-        <Icon name="right"/>
-      </li>
-      <li><span>Life</span>
+      <li v-for="tag in tags" :key="tag">
+        <span>{{tag}}</span>
         <Icon name="right"/>
       </li>
     </ol>
     <div class="createTag-wrapper">
-      <button class="createTag">New Label</button>
+      <button class="createTag" @click="createTag">New Label</button>
     </div>
   </Layout>
 </template>
 
 <script lang="ts">
-  export default {
-    name: 'Labels',
-  };
+  import Vue from 'vue';
+  import {Component} from 'vue-property-decorator';
+  import tagListModel from '@/models/tagListModel';
+
+  tagListModel.fetch;
+  @Component
+  export default class Labels extends Vue {
+    tags = tagListModel.data;
+
+    createTag() {
+      const name = window.prompt('please enter the label name');
+      if (name) {
+          const message = tagListModel.create(name);
+          if(message==='duplicated'){
+            window.alert('Label name duplicated')
+          }else if(message === 'success'){
+            window.alert('successful created')
+          }
+        }
+    }
+  }
+
 </script>
 
 <style lang="scss" scoped>
@@ -50,19 +58,21 @@
       }
     }
   }
-  .createTag{
-background: #767676;
+
+  .createTag {
+    background: #767676;
     color: white;
     border-radius: 4px;
     border: none;
     height: 40px;
     padding: 0 16px;
-&-wrapper{
-  text-align: center;
-  padding:16px;
-  margin-top: 44-16px;
 
-}
+    &-wrapper {
+      text-align: center;
+      padding: 16px;
+      margin-top: 44-16px;
+
+    }
   }
 
 </style>
