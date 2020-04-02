@@ -1,13 +1,22 @@
 <template>
-  <Layout>EditLabel</Layout>
+  <Layout>
+    <div>
+      <Icon name="left"/>
+      <span>EditLabel</span>
+    </div>
+      <Notes filed-name="Label Name" placeholder="Enter the Label Name"/>
+  </Layout>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
   import tagListModel from '@/models/tagListModel';
+  import Notes from '@/components/Money/Notes.vue';
 
-  @Component
+  @Component({
+    components: {Notes}
+  })
   export default class EditLabel extends Vue {
     created() {
       const id = this.$route.params.id;

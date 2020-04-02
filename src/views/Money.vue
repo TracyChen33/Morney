@@ -2,11 +2,13 @@
   <Layout class-prefix="layout">
     <NumberPad :value.sync="record.amount" @submit="saveRecord"/>
     <Types :value.sync="record.type"/>
-    <Notes @update:value="onUpdateNotes"/>
+    <Notes filed-name="Remark"
+           placeholder="Enter your remark here"
+           @update:value="onUpdateNotes"/>
     <Tags :data-source.sync="tags" @update:value="onUpdateTags"/>
   </Layout>
-
 </template>
+
 
 <script lang="ts">
   import Vue from 'vue';
