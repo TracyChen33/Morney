@@ -1,11 +1,13 @@
 <template>
   <Layout>
-    <ol class="tags">
-      <li v-for="tag in tags" :key="tag.id">
+    <div class="tags">
+      <router-link class="tag"
+                   v-for="tag in tags" :key="tag.id"
+                   :to="`/labels/edit/${tag.id}`">
         <span>{{tag.name}}</span>
         <Icon name="right"/>
-      </li>
-    </ol>
+      </router-link>
+    </div>
     <div class="createTag-wrapper">
       <button class="createTag" @click="createTag">New Label</button>
     </div>
@@ -25,13 +27,13 @@
     createTag() {
       const name = window.prompt('please enter the label name');
       if (name) {
-          const message = tagListModel.create(name);
-          if(message==='duplicated'){
-            window.alert('Label name duplicated')
-          }else if(message === 'success'){
-            window.alert('successful created')
-          }
+        const message = tagListModel.create(name);
+        if (message === 'duplicated') {
+          window.alert('Label name duplicated');
+        } else if (message === 'success') {
+          window.alert('successful created');
         }
+      }
     }
   }
 
@@ -43,7 +45,7 @@
     font-size: 16px;
     padding-left: 16px;
 
-    > li {
+    > .tag {
       display: flex;
       min-height: 44px;
       align-items: center;
