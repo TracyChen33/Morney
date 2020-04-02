@@ -9,7 +9,10 @@
       </router-link>
     </div>
     <div class="createTag-wrapper">
-      <button class="createTag" @click="createTag">New Label</button>
+      <Button class="createTag"
+              @click="createTag">
+        New Label
+      </Button>
     </div>
   </Layout>
 </template>
@@ -40,6 +43,22 @@
 </script>
 
 <style lang="scss" scoped>
+  .createTag {
+    background: #767676;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    height: 40px;
+    padding: 0 16px;
+
+    &-wrapper {
+      text-align: center;
+      padding: 16px;
+      margin-top: 44-16px;
+
+    }
+  }
+
   .tags {
     background: white;
     font-size: 16px;
@@ -60,21 +79,4 @@
       }
     }
   }
-
-  .createTag {
-    background: #767676;
-    color: white;
-    border-radius: 4px;
-    border: none;
-    height: 40px;
-    padding: 0 16px;
-
-    &-wrapper {
-      text-align: center;
-      padding: 16px;
-      margin-top: 44-16px;
-
-    }
-  }
-
 </style>
