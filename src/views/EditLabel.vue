@@ -1,15 +1,17 @@
 <template>
   <Layout>
     <div class="navBar">
-      <Icon class="leftIcon" name="left"/>
+      <Icon class="leftIcon" name="left" @click="goBack"/>
       <span class="title">EditLabel</span>
       <span class="rightIcon"></span>
     </div>
     <div class="form-wrapper">
-      <FormItem :value="tag.name" filed-name="Label Name" placeholder="Enter the Label Name"/>
+      <FormItem :value="tag.name"
+                @update:value="update"
+                filed-name="Label Name" placeholder="Enter the Label Name"/>
     </div>
     <div class="button-wrapper">
-      <Button>Delete Label</Button>
+      <Button @click="remove">Delete Label</Button>
     </div>
   </Layout>
 </template>
@@ -29,7 +31,7 @@
 
     created() {
       const id = this.$route.params.id;
-      tagListModel.fetch;
+      tagListModel.fetch();
       const tags = tagListModel.data;
       const tag = tags.filter(t => t.id === id)[0];
       if (tag) {
@@ -37,9 +39,23 @@
       } else {
         this.$router.replace('404');
       }
-
     }
 
+    update(name: string) {
+      if (this.tag) {
+        tagListModel.update(this.tag.id, name);
+      }
+    }
+
+    remove() {
+      if (this.tag) {
+        tagListModel.remove(this.tag.id);
+      }
+    }
+
+    goBack() {
+      this.$router.back();
+    }
   }
 </script>
 
