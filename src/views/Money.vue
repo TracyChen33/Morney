@@ -1,11 +1,12 @@
 <template>
   <Layout class-prefix="layout">
-    {{recordList}}
     <NumberPad :value.sync="record.amount" @submit="saveRecord"/>
     <Types :value.sync="record.type"/>
-    <FormItem filed-name="Remark"
-           placeholder="Enter your remark here"
-           @update:value="onUpdateNotes"/>
+    <div class="notes">
+      <FormItem filed-name="Remark"
+                placeholder="Enter your remark here"
+                @update:value="onUpdateNotes"/>
+    </div>
     <Tags :data-source.sync="tags" @update:value="onUpdateTags"/>
   </Layout>
 </template>
@@ -60,6 +61,9 @@
     border: 3px solid blue;
     display: flex;
     flex-direction: column-reverse;
+  }
+  .notes{
+    padding: 12px 0;
   }
 
 </style>
