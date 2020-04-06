@@ -22,7 +22,7 @@
   import {Component} from 'vue-property-decorator';
   import tagListModel from '@/models/tagListModel';
 
-  tagListModel.fetch;
+  tagListModel.fetch();
   @Component
   export default class Labels extends Vue {
     tags = tagListModel.data;
