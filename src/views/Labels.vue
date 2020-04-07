@@ -29,13 +29,8 @@
 
     createTag() {
       const name = window.prompt('please enter the label name');
-      if (name) {
-        const message = tagListModel.create(name);
-        if (message === 'duplicated') {
-          window.alert('Label name duplicated');
-        } else if (message === 'success') {
-          window.alert('successful created');
-        }
+      if(name){
+        window.createTag(name);
       }
     }
   }
