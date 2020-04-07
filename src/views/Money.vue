@@ -44,14 +44,12 @@
     }
 
     saveRecord() {
-      const record2: RecordItem = recordListModel.clone(this.record);
-      record2.createdAt = new Date();
-      this.recordList.push(record2);
+      recordListModel.create(this.record);
     }
 
     @Watch('recordList')
     onRecordListChange() {
-      recordListModel.save(this.recordList);
+      recordListModel.save();
     }
 
   }
@@ -62,7 +60,8 @@
     display: flex;
     flex-direction: column-reverse;
   }
-  .notes{
+
+  .notes {
     padding: 12px 0;
   }
 
