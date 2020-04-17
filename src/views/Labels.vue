@@ -20,19 +20,27 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
+  import Button from '@/components/Button.vue';
 
-  @Component
-  export default class Labels extends Vue {
-    //TODO
-    tags =[]; // store.tagList;
-
-    createTag() {
-      const name = window.prompt('please enter the label name');
-      if(name){
-        //TODO
-       // store.createTag(name);
+  @Component({
+    components: {Button},
+    computed: {
+      tags() {
+        return this.$store.state.tagList;
       }
     }
+
+  })
+  export default class Labels extends Vue {
+ beforeCreate(){
+   this.$store.commit('fetchTags');
+ }
+
+    createTag() {
+      const name = window.prompt('please enter your Tags name');
+      if (!name) {return window.alert('Tags cannot be null');}
+      this.$store.commit('createTag',name);
+      }
   }
 
 </script>
