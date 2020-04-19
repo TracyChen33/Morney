@@ -1,7 +1,9 @@
 <template>
   <ul class="types">
-    <li :class="value === '-' && 'selected'" @click="selectType('-')">Spend</li>
-    <li :class="value === '+' && 'selected'" @click="selectType('+')">Income</li>
+    <li :class="{[classPrefix+'-item']:classPrefix,selected:value==='-'}"
+        @click="selectType('-')">Spend</li>
+    <li :class="{[classPrefix+'-item']:classPrefix,selected:value==='+'}"
+        @click="selectType('+')">Income</li>
   </ul>
 </template>
 
@@ -12,7 +14,8 @@
   @Component
   export default class Types extends Vue {
 
-    @Prop() readonly value!: string;
+    @Prop(String) readonly value!: string;
+    @Prop(String) classPrefix?: string;
 
     selectType(type: string) {
       if (type !== '-' && type !== '+') {
