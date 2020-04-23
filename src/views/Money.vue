@@ -49,7 +49,7 @@
     }
   }
 </script>
-<style lang="scss" scoped>
+<style scoped lang="scss">
   .layout-content {
     border: 3px solid blue;
     display: flex;
