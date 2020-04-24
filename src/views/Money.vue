@@ -50,7 +50,7 @@
   }
 </script>
 <style scoped lang="scss">
-  .layout-content {
+  ::v-deep .layout-content {
     border: 3px solid blue;
     display: flex;
     flex-direction: column-reverse;
