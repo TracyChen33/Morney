@@ -9,21 +9,22 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    recordList:[],
-    tagList:[],
-    currentTag:undefined
+    recordList: [],
+    createRecordError:null,
+    tagList: [],
+    currentTag: undefined
   } as RootState,
   mutations: {
-    setCurrentTag(state,id: string){
-      state.currentTag= state.tagList.filter(t => t.id === id)[0];
+    setCurrentTag(state, id: string) {
+      state.currentTag = state.tagList.filter(t => t.id === id)[0];
     },
-    updateTag( state,payload: {id: string; name: string}) {
-      const {id,name} = payload;
+    updateTag(state, payload: { id: string; name: string }) {
+      const {id, name} = payload;
       const idList = state.tagList.map(item => item.id);
       if (idList.indexOf(id) >= 0) {
         const names = state.tagList.map(item => item.name);
         if (names.indexOf(name) >= 0) {
-          window.alert('label duplicated')
+          window.alert('label duplicated');
         } else {
           const tag = state.tagList.filter(item => item.id === id)[0];
           tag.name = name;
@@ -31,7 +32,7 @@ const store = new Vuex.Store({
         }
       }
     },
-    removeTag(state,id: string) {
+    removeTag(state, id: string) {
       let index = -1;
       for (let i = 0; i < state.tagList.length; i++) {
         if (state.tagList[i].id === id) {
@@ -39,23 +40,23 @@ const store = new Vuex.Store({
           break;
         }
       }
-      if(index>= 0){
+      if (index >= 0) {
         state.tagList.splice(index, 1);
         store.commit('saveTags');
         router.back();
-      }else{
-        window.alert('Failed to delete')
+      } else {
+        window.alert('Failed to delete');
       }
     },
     fetchRecords(state) {
-      state.recordList=JSON.parse(window.localStorage.getItem('recordList') || '[]') as RecordItem[];
+      state.recordList = JSON.parse(window.localStorage.getItem('recordList') || '[]') as RecordItem[];
     },
-    createRecord(state,record) {
-      const record2: RecordItem = clone(record);
+    createRecord(state, record: RecordItem) {
+      const record2= clone(record);
       record2.createdAt = new Date().toISOString();
       state.recordList.push(record2);
       console.log(state.recordList);
-      store.commit('saveRecords')
+      store.commit('saveRecords');
     },
     saveRecords(state) {
       window.localStorage.setItem('recordList',
@@ -63,8 +64,15 @@ const store = new Vuex.Store({
     },
     fetchTags(state) {
       state.tagList = JSON.parse(window.localStorage.getItem('tagList') || '[]');
+      if(!state.tagList || state.tagList.length === 0){
+        store.commit('createTag','Cloth');
+        store.commit('createTag','Food');
+        store.commit('createTag','Home');
+        store.commit('createTag','Work');
+
+      }
     },
-    createTag(state,name: string) {
+    createTag(state, name: string) {
       const names = state.tagList.map(item => item.name);
       if (names.indexOf(name) >= 0) {
         window.alert('Label name duplicated');
@@ -79,7 +87,6 @@ const store = new Vuex.Store({
     },
   }
 });
-
 
 
 export default store;

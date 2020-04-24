@@ -6,12 +6,12 @@
     <div class="notes">
       <FormItem filed-name="Remark"
                 placeholder="Enter your remark here"
-                @update:value="onUpdateNotes"/>
+                :value.sync="record.notes"
+      />
     </div>
-    <Tags/>
+    <Tags @update:value="record.tags=$event"/>
   </Layout>
 </template>
-
 
 <script lang="ts">
   import Vue from 'vue';
@@ -30,6 +30,7 @@
     get recordList() {
       return this.$store.state.recordList;
     }
+
     recordTypeList = recordTypeList;
 
     record: RecordItem = {
@@ -45,7 +46,14 @@
     }
 
     saveRecord() {
+      if (!this.record.tags || this.record.tags.length === 0) {
+        return window.alert('Please choose one Label');
+      }
       this.$store.commit('createRecord', this.record);
+      if (this.$store.state.createRecordError === null) {
+        window.alert('Saved');
+        this.record.notes = '';
+      }
     }
   }
 </script>

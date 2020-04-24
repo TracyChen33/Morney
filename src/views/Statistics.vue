@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"/>
-    <ol>
+    <ol v-if="groupedList.length>0">
       <li v-for="(group,index) in groupedList" :key="index">
         <h3 class="title">{{beautify(group.title)}} <span>${{group.total}}</span></h3>
         <ol>
@@ -15,6 +15,9 @@
         </ol>
       </li>
     </ol>
+    <div v-else class="noResult">
+      There is no related record at this moment.
+    </div>
   </Layout>
 </template>
 
@@ -33,7 +36,7 @@
 
   export default class Statistics extends Vue {
     tagString(tags: Tag[]) {
-      return tags.length === 0 ? 'None' : tags.join(',');
+      return tags.length === 0 ? 'None' : tags.map(t => t.name).join(',');
     }
 
     beautify(string: string) {
@@ -62,6 +65,7 @@
       const newList = clone(recordList)
         .filter(r => r.type === this.type)
         .sort((a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf());
+      if (newList.length === 0) {return [];}
       type Result = { title: string; total?: number; items: RecordItem[] }[]
       const result: Result = [{title: dayjs(newList[0].createdAt).format('YYYY.MMM.DD'), items: [newList[0]]}];
       for (let i = 1; i < newList.length; i++) {
@@ -74,7 +78,7 @@
         }
       }
       result.map(group => {
-        group.total = group.items.reduce((sum,item)=>sum +item.amount,0);
+        group.total = group.items.reduce((sum, item) => sum + item.amount, 0);
       });
       return result;
     }
@@ -89,6 +93,10 @@
   }
 </script>
 <style scoped lang="scss">
+  .noResult{
+    padding: 16px;
+    text-align: center;
+  }
   ::v-deep .type-tabs-item {
     background: #c4c4c4;
 
